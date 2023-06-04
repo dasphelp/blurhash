@@ -3,4 +3,5 @@ target: fuzz.sh
 
 cmds:
   - cmd: cd /blurhash
+  - cmd: chmod +x fuzz.sh
   - cmd: sh fuzz.sh @@
