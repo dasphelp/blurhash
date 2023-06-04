@@ -1,0 +1,5 @@
+project: blurhash
+target: fuzz.sh
+
+cmds:
+  - cmd: ./fuzz.sh @@
