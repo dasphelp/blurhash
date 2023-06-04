@@ -2,5 +2,5 @@ project: blurhash
 target: fuzz.sh
 
 cmds:
-  - cmd: cd ~/
+  - cmd: cd /blurhash
   - cmd: sh fuzz.sh @@
