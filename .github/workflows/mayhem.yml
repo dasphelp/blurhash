@@ -7,6 +7,8 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  ENCODER_MAYHEMFILE: Mayhemfile
+  DECODER_MAYHEMFILE: Mayhemfile1
 
 jobs:
   build:
@@ -45,12 +47,18 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Start analysis
+      - name: Start analysis for encoder
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.ENCODER_MAYHEMFILE }}
           sarif-output: sarif
+      - name: Start analysis for decoder
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.DECODER_MAYHEMFILE }}
+          sarif-output: sarif  
 
       - name: Upload SARIF file(s)
         uses: github/codeql-action/upload-sarif@v1
