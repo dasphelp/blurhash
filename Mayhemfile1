@@ -3,4 +3,4 @@ target: fuzz.sh
 
 cmds:
   - cmd: cd ~/
-  - cmd: ./fuzz.sh @@
+  - cmd: sh fuzz.sh @@
